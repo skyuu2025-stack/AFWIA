@@ -6,6 +6,10 @@ import { X } from 'lucide-react';
 const Footer: React.FC = () => {
   const [showWeChat, setShowWeChat] = useState(false);
 
+  // Note: For the actual production site, replace this link with the specific 
+  // destination from your QR code to ensure the dynamic generator matches your account.
+  const wechatData = "https://u.wechat.com/AFWIA_OFFICIAL"; 
+
   return (
     <footer className="bg-black text-white py-24 px-6 md:px-12 border-t border-black relative">
       <div className="max-w-[1800px] mx-auto">
@@ -73,52 +77,60 @@ const Footer: React.FC = () => {
       {showWeChat && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
           <div 
-            className="absolute inset-0 bg-black/90 backdrop-blur-md" 
+            className="absolute inset-0 bg-black/90 backdrop-blur-sm transition-opacity" 
             onClick={() => setShowWeChat(false)}
           />
-          <div className="relative bg-white p-10 md:p-14 max-w-[440px] w-full animate-in fade-in zoom-in duration-300 shadow-[0_20px_80px_rgba(0,0,0,0.6)]">
+          <div className="relative bg-white pt-14 pb-14 px-8 md:px-14 max-w-[400px] w-full animate-in fade-in zoom-in duration-300 shadow-2xl rounded-2xl">
             <button 
               onClick={() => setShowWeChat(false)}
-              className="absolute top-5 right-5 text-black hover:opacity-40 transition-opacity p-2 z-10"
+              className="absolute top-6 right-6 text-black/10 hover:text-black transition-colors p-1"
             >
-              <X size={32} />
+              <X size={24} />
             </button>
             
-            <div className="flex flex-col">
-              {/* Profile Section */}
-              <div className="flex items-center gap-5 mb-12">
-                <div className="w-[80px] h-[80px] bg-black flex flex-col items-center justify-center p-2 rounded-lg shrink-0 shadow-lg">
-                  <span className="text-white text-[12px] font-black tracking-tighter leading-none mb-0.5">AFWIA</span>
-                  <span className="text-white/40 text-[5px] font-bold uppercase tracking-[0.15em]">Agency</span>
+            <div className="flex flex-col items-center">
+              {/* Brand Header */}
+              <div className="w-full flex items-center gap-4 mb-10 px-1">
+                <div className="w-14 h-14 bg-black flex flex-col items-center justify-center p-1 rounded-xl shadow-md shrink-0">
+                   <span className="text-white text-[10px] font-black tracking-tighter leading-none mb-0.5">AFWIA</span>
+                   <span className="text-white/40 text-[4px] font-bold uppercase tracking-[0.2em]">Agency</span>
                 </div>
-                <div className="flex flex-col">
-                  <h3 className="text-black font-black text-2xl tracking-tight leading-none mb-1.5 uppercase">AFWIA</h3>
-                  <p className="text-[11px] text-[#A1A1A1] font-bold uppercase tracking-[0.2em] opacity-80">OFFICIAL CONTACT</p>
+                <div className="text-left">
+                  <h3 className="text-black font-black text-lg tracking-tight leading-none mb-1 uppercase">AFWIA Official</h3>
+                  <p className="text-[9px] text-gray-400 font-bold tracking-[0.2em] uppercase">Scan to Inquire</p>
                 </div>
               </div>
               
-              {/* QR Code Container - Clean and Borderless for Maximum Scan Reliability */}
-              <div className="w-full aspect-square relative mb-12 flex items-center justify-center bg-white shadow-[inset_0_0_1px_rgba(0,0,0,0.1)]">
-                {/* 
-                  - ECC=M: Simpler pattern is better for mobile focus.
-                  - Margin=10: Essential quiet zone for scanners.
-                  - crisp-edges: Keeps modules sharp.
-                */}
+              {/* High Fidelity QR Implementation matching provided image */}
+              <div className="relative w-full aspect-square bg-white flex items-center justify-center mb-10 p-2 border border-gray-50 rounded-lg">
                 <img 
-                  src="https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data=https://www.afwia.com/contact&ecc=M&margin=10&format=png" 
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=${encodeURIComponent(wechatData)}&ecc=H&margin=2`} 
                   alt="WeChat QR Code" 
-                  className="w-full h-full block"
-                  style={{ imageRendering: 'crisp-edges' }}
+                  className="w-full h-full block object-contain"
                 />
+                
+                {/* Center Logo: Black Rounded Square + High Fidelity WeChat Bubble Icon */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-[19%] h-[19%] bg-white p-[3px] rounded-[24%] shadow-sm">
+                    <div className="w-full h-full bg-black flex items-center justify-center rounded-[22%]">
+                      {/* High-Fidelity WeChat SVG with eyes as seen in user reference */}
+                      <svg viewBox="0 0 100 100" className="w-[75%] h-[75%] fill-white">
+                        <path d="M31.2,19.2c-15.3,0-27.7,10.6-27.7,23.6c0,7,3.6,13.2,9.3,17.7l-2.4,7.1l8.1-4c4,1.8,8.4,2.8,13.1,2.8c1.6,0,3.1-0.1,4.6-0.4 c-0.6-1.5-0.9-3.2-0.9-4.9c0-10.4,11.1-18.8,24.8-18.8c3.2,0,6.2,0.5,9,1.3c-2.3-14.3-17.7-24.4-37.9-24.4V19.2z M21.3,32.3 c1.8,0,3.2,1.4,3.2,3.2c0,1.8-1.4,3.2-3.2,3.2c-1.8,0-3.2-1.4-3.2-3.2C18.1,33.8,19.5,32.3,21.3,32.3z M41.1,32.3 c1.8,0,3.2,1.4,3.2,3.2c0,1.8-1.4,3.2-3.2,3.2c-1.8,0-3.2-1.4-3.2-3.2C37.9,33.8,39.3,32.3,41.1,32.3z"/>
+                        <path d="M68.8,42.4c-13.7,0-24.8,8.4-24.8,18.8s11.1,18.8,24.8,18.8c2.9,0,5.6-0.4,8.1-1.2l6,3l-1.8-5.3 c4.6-3.8,7.5-9.1,7.5-15.3C88.6,50.8,79.7,42.4,68.8,42.4z M60,53.4c1.3,0,2.3,1,2.3,2.3s-1,2.3-2.3,2.3c-1.3,0-2.3-1-2.3-2.3 S58.7,53.4,60,53.4z M77.5,53.4c1.3,0,2.3,1,2.3,2.3s-1,2.3-2.3,2.3c-1.3,0-2.3-1-2.3-2.3S76.2,53.4,77.5,53.4z"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               </div>
               
-              {/* WeChat Styled Footer */}
-              <div className="text-center w-full">
-                <p className="text-[16px] text-[#9b9b9b] font-medium tracking-tight mb-2">
-                  扫一扫上面的二维码图案，加我为朋友。
+              {/* Context Footer */}
+              <div className="text-center w-full px-2">
+                <p className="text-[14px] text-gray-500 font-medium mb-3 tracking-tight">
+                  扫一扫二维码，添加 AFWIA 商务微信
                 </p>
-                <p className="text-[10px] text-[#D1D1D1] font-black uppercase tracking-[0.3em] leading-relaxed">
-                  SCAN TO CONNECT WITH AFWIA TEAM
+                <div className="w-8 h-[1px] bg-gray-100 mx-auto mb-4" />
+                <p className="text-[8px] text-gray-300 font-black uppercase tracking-[0.5em] leading-relaxed">
+                  DIRECT ACCESS TO GLOBAL RUNWAY STRATEGY
                 </p>
               </div>
             </div>
