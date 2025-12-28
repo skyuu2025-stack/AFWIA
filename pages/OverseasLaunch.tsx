@@ -36,7 +36,7 @@ const OverseasLaunch: React.FC = () => {
                       <step.icon className="w-8 h-8 text-slate-900" />
                    </div>
                    <h4 className="font-bold mb-4 uppercase tracking-wider">{step.title}</h4>
-                   <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
+                   <p className="text-sm text-slate-500 client leading-relaxed">{step.desc}</p>
                 </div>
               ))}
            </div>
@@ -66,11 +66,21 @@ const OverseasLaunch: React.FC = () => {
                  </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                 <div className="h-96 bg-slate-200 grayscale overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1504214208698-ea1919a2f9e5?auto=format&fit=crop&q=80&w=500" alt="Bangkok Architecture" className="w-full h-full object-cover" />
+                 <div className="h-[500px] bg-slate-200 overflow-hidden relative group">
+                    <img 
+                      src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1000" 
+                      alt="Bangkok Architecture" 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                    />
+                    <div className="absolute inset-0 bg-black/5 pointer-events-none"></div>
                  </div>
-                 <div className="h-96 bg-slate-200 grayscale overflow-hidden translate-y-12">
-                    <img src="https://images.unsplash.com/photo-1552423120-7c093a890403?auto=format&fit=crop&q=80&w=500" alt="SEA Market Vibe" className="w-full h-full object-cover" />
+                 <div className="h-[500px] bg-slate-200 overflow-hidden translate-y-12 relative group">
+                    <img 
+                      src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?auto=format&fit=crop&q=80&w=1000" 
+                      alt="SEA Market Vibe" 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                    />
+                    <div className="absolute inset-0 bg-black/5 pointer-events-none"></div>
                  </div>
               </div>
            </div>

@@ -69,9 +69,14 @@ const IPPlatforms: React.FC = () => {
                    </div>
                  </div>
                  <div className="mt-16">
-                    <Link to="/contact" className="px-10 py-5 bg-white text-slate-900 font-black tracking-widest uppercase text-xs hover:bg-slate-200 transition-all inline-block">
+                    <a 
+                      href="https://www.animefashionweek.org" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="px-10 py-5 bg-white text-slate-900 font-black tracking-widest uppercase text-xs hover:bg-slate-200 transition-all inline-block"
+                    >
                        Partner with AFW
-                    </Link>
+                    </a>
                  </div>
               </div>
            </div>
