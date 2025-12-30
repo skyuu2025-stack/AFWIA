@@ -2,10 +2,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, ShieldAlert, Users, Layers, AlertTriangle } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Home: React.FC = () => {
   return (
     <div className="flex flex-col bg-white">
+      <SEO 
+        title="国际代理机构 | 品牌出海与架构咨询" 
+        description="AFWIA (AFW International Agency) 为高净值客户提供国际结构会谈、全球时装周制作及品牌出海系统解决方案。总部位于香港，连接纽约、伦敦、巴黎与曼谷。"
+        keywords="AFWIA, 国际架构, 品牌出海, 时装周制作, 香港代理机构, 国际身份规划, 高净值客户服务"
+      />
+      
       {/* Module 1: Hero - Problem Focused */}
       <section className="min-h-screen flex flex-col justify-center bg-black text-white px-6 md:px-12 relative overflow-hidden pt-32 lg:pt-40">
         <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
@@ -13,12 +20,10 @@ const Home: React.FC = () => {
         </div>
         
         <div className="max-w-[1400px] mx-auto w-full z-10">
-          {/* Tag moved lower and styled to match the screenshot precisely */}
           <div className="mb-12 inline-flex items-center gap-4 px-5 py-2.5 bg-black border border-white/20 rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)]">
             <AlertTriangle size={14} className="text-yellow-500 fill-yellow-500/10" />
             <span className="text-[10px] font-black uppercase tracking-[0.35em] text-white relative">
               <span className="relative z-10">Warning: Global Structural Lag</span>
-              {/* Subtle chromatic aberration effect as seen in user reference */}
               <span className="absolute inset-0 text-red-500 translate-x-[0.5px] opacity-30 select-none">Warning: Global Structural Lag</span>
               <span className="absolute inset-0 text-cyan-400 -translate-x-[0.5px] opacity-30 select-none">Warning: Global Structural Lag</span>
             </span>
@@ -49,7 +54,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Module 2: Risk Visibility - 风险显性化 */}
+      {/* Module 2: Risk Visibility */}
       <section className="py-32 px-6 md:px-12 bg-gray-50 border-y border-black/5">
         <div className="max-w-[1600px] mx-auto">
           <div className="flex flex-col mb-24">
@@ -89,13 +94,13 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Module 3: We Are - 核心信任 */}
+      {/* Module 3: We Are */}
       <section className="py-32 px-6 md:px-12 bg-white">
         <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="relative aspect-[4/5] bg-gray-200 grayscale overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1000" 
-              alt="Office Tower"
+              alt="AFWIA Strategic HQ Hong Kong"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
@@ -128,7 +133,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Module 4: Screening Statement - 反向筛选 (非常重要) */}
+      {/* Module 4: Screening Statement */}
       <section className="py-32 px-6 md:px-12 bg-black text-white">
         <div className="max-w-[1200px] mx-auto text-center">
           <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-white/30 mb-12 block">Mandatory Disclaimer / 筛选声明</span>

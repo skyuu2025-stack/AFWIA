@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Check, Clock, UserCheck, ShieldCheck, ArrowRight, AlertCircle } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Consultation: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -16,7 +17,6 @@ const Consultation: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // PRD Rule: Automatic screening for Million-level and above
     if (form.assetRange === 'below-1m') {
       alert("抱歉，AFWIA 的结构会谈仅针对资产规模在百万美金以上的个人或家族。系统已为您引导至基础资讯页面。");
       window.location.href = '#/about';
@@ -28,6 +28,7 @@ const Consultation: React.FC = () => {
   if (submitted) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6 bg-white">
+        <SEO title="申请成功 | 国际结构会谈" description="您的会谈申请已提交，我们将尽快审核。" />
         <div className="text-center max-w-lg">
           <div className="w-24 h-24 bg-black rounded-full flex items-center justify-center mx-auto mb-8">
             <Check className="text-white" size={48} />
@@ -46,6 +47,11 @@ const Consultation: React.FC = () => {
 
   return (
     <div className="pt-32 pb-32 bg-white">
+      <SEO 
+        title="申请国际结构会谈 | 跨境架构与身份规划" 
+        description="预约 AFWIA 合伙人级别的 90 分钟深度结构会谈。针对资产规模百万美金以上的高净值个人，解决国际身份单点风险与跨境企业合规架构。"
+        keywords="结构会谈, 国际身份规划, 跨境资产配置, 香港架构咨询, 家族办公室顾问"
+      />
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
         <header className="py-24 border-b border-black">
           <div className="flex flex-col lg:flex-row justify-between items-end gap-12">
