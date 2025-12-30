@@ -9,6 +9,7 @@ import GlobalRunway from './pages/GlobalRunway';
 import OverseasLaunch from './pages/OverseasLaunch';
 import IPPlatforms from './pages/IPPlatforms';
 import Contact from './pages/Contact';
+import Consultation from './pages/Consultation';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -22,7 +23,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col selection:bg-slate-900 selection:text-white">
+      <div className="min-h-screen flex flex-col selection:bg-black selection:text-white">
         <Navbar />
         <main className="flex-grow">
           <Routes>
@@ -32,6 +33,7 @@ const App: React.FC = () => {
             <Route path="/launch" element={<OverseasLaunch />} />
             <Route path="/platforms" element={<IPPlatforms />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/consultation" element={<Consultation />} />
           </Routes>
         </main>
         <Footer />

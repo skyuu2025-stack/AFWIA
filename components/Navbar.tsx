@@ -1,11 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [lang, setLang] = useState<'EN' | 'CN'>('CN');
   const location = useLocation();
 
   useEffect(() => {
@@ -16,38 +17,67 @@ const Navbar: React.FC = () => {
 
   useEffect(() => setIsMenuOpen(false), [location]);
 
+  const t = {
+    EN: {
+      about: 'Philosophy',
+      runway: 'Runway',
+      launch: 'Global Launch',
+      platforms: 'IP Platform',
+      cta: 'Structural Consultation'
+    },
+    CN: {
+      about: '核心哲学',
+      runway: '国际秀场',
+      launch: '全球发布',
+      platforms: 'IP 孵化',
+      cta: '申请结构会谈'
+    }
+  }[lang];
+
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white border-b border-black py-4' : 'bg-transparent py-8'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-black/5 py-4' : 'bg-transparent py-8'}`}>
       <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex justify-between items-center">
         <Link to="/" className="flex flex-col group">
           <span className={`text-2xl font-black tracking-tighter leading-none ${!isScrolled && location.pathname === '/' ? 'text-white' : 'text-black'}`}>
             AFWIA
           </span>
-          <span className={`text-[8px] uppercase tracking-[0.6em] font-bold mt-1 ${!isScrolled && location.pathname === '/' ? 'text-white/60' : 'text-black/40'}`}>
-            International Agency
+          <span className={`text-[7px] uppercase tracking-[0.6em] font-bold mt-1 ${!isScrolled && location.pathname === '/' ? 'text-white/60' : 'text-black/40'}`}>
+            Structure & Infrastructure
           </span>
         </Link>
 
-        {/* Flat Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-12">
-          {['About', 'Runway', 'Launch', 'Platforms'].map((item) => (
+        <div className="hidden lg:flex items-center gap-10">
+          <button 
+            onClick={() => setLang(lang === 'EN' ? 'CN' : 'EN')}
+            className={`flex items-center gap-2 text-[10px] font-bold tracking-widest transition-opacity hover:opacity-50 ${!isScrolled && location.pathname === '/' ? 'text-white' : 'text-black'}`}
+          >
+            <Globe size={12} /> {lang === 'EN' ? 'EN / 中文' : '中文 / EN'}
+          </button>
+          
+          {[
+            { key: 'about', path: '/about' },
+            { key: 'runway', path: '/runway' },
+            { key: 'launch', path: '/launch' },
+            { key: 'platforms', path: '/platforms' }
+          ].map((item) => (
             <Link
-              key={item}
-              to={`/${item.toLowerCase()}`}
-              className={`text-[10px] font-bold uppercase tracking-[0.3em] transition-opacity hover:opacity-50 ${!isScrolled && location.pathname === '/' ? 'text-white' : 'text-black'}`}
+              key={item.key}
+              to={item.path}
+              className={`text-[10px] font-bold uppercase tracking-[0.2em] transition-opacity hover:opacity-50 ${!isScrolled && location.pathname === '/' ? 'text-white' : 'text-black'}`}
             >
-              {item}
+              {(t as any)[item.key]}
             </Link>
           ))}
+          
           <Link
-            to="/contact"
-            className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest border transition-all ${
+            to="/consultation"
+            className={`px-8 py-3 text-[10px] font-black uppercase tracking-widest transition-all ${
               !isScrolled && location.pathname === '/' 
-                ? 'border-white text-white hover:bg-white hover:text-black' 
-                : 'border-black text-black hover:bg-black hover:text-white'
+                ? 'bg-white text-black hover:bg-gray-200' 
+                : 'bg-black text-white hover:bg-gray-800'
             }`}
           >
-            Inquiry
+            {t.cta}
           </Link>
         </div>
 
@@ -56,17 +86,17 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Fullscreen Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-white z-[60] p-12 flex flex-col justify-center space-y-8">
-          {['About', 'Runway', 'Launch', 'Platforms', 'Contact'].map((item) => (
-            <Link key={item} to={`/${item.toLowerCase() === 'about' ? 'about' : item.toLowerCase()}`} className="text-6xl font-black uppercase tracking-tighter hover:italic">
+        <div className="fixed inset-0 bg-white z-[60] p-12 flex flex-col justify-center space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="flex justify-between items-start mb-12">
+            <span className="text-sm font-bold opacity-30">MENU / 菜单</span>
+            <button onClick={() => setIsMenuOpen(false)}><X size={32} /></button>
+          </div>
+          {['About', 'Runway', 'Launch', 'Platforms', 'Consultation'].map((item) => (
+            <Link key={item} to={`/${item.toLowerCase()}`} className="text-4xl font-black uppercase tracking-tighter hover:italic border-b border-black/5 pb-4">
               {item}
             </Link>
           ))}
-          <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-6">
-            <X size={32} />
-          </button>
         </div>
       )}
     </nav>
